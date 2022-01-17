@@ -49,7 +49,7 @@ exports.getBootcamps = asyncHandler(async (req, res, next) => {
   const endIndex = page * limit;
   const total = await Bootcamp.countDocuments();
 
-  query = query.skip(startIndex).limit(limit);
+  query = query.skip(startIndex).limit(limit).populate('courses');
   // Executing query
   const bootcamps = await query;
 
@@ -138,6 +138,8 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
     );
     //res.status(400).json({ success: false });
   }
+
+  bootcamp.remove();
 
   res.status(200).json({ success: true, data: {} });
 });
