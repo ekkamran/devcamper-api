@@ -17,6 +17,7 @@ dotenv.config({ path: "./config/config.env" });
 const bootcamps = require("./routes/bootcamps");
 const courses = require("./routes/courses");
 const auth = require("./routes/auth");
+const users = require("./routes/users");
 
 // Connect to database
 connectDB();
@@ -46,6 +47,7 @@ const api = process.env.API;
 app.use(`${api}/bootcamps`, bootcamps);
 app.use(`${api}/courses`, courses);
 app.use(`${api}/auth`, auth);
+app.use(`${api}/users`, users);
 
 app.use(errorHandler);
 
